@@ -1,0 +1,27 @@
+[workspace]
+resolver = "2"
+
+# This tells Cargo to look for individual contracts inside the contracts subfolder
+members = [
+  "contracts/*",
+]
+
+[workspace.dependencies]
+# We define the SDK version here so all contracts stay in sync
+soroban-sdk = "20.0.0" 
+
+[profile.release]
+# Optimization settings to ensure the WASM file is small enough for the blockchain
+opt-level = "z"
+overflow-checks = true
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true
+
+# This profile is useful during development to see logs in the terminal
+[profile.release-with-logs]
+inherits = "release"
+debug-assertions = true
