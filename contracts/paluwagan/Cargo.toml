@@ -1,0 +1,17 @@
+[package]
+name = "helloworld"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib"] # Required for WASM output
+
+[dependencies]
+soroban-sdk = "21.0.0" # Match this with your Soroban CLI version
+
+[dev-dependencies]
+soroban-sdk = { version = "21.0.0", features = ["testutils"] }
+
+[features]
+testutils = ["soroban-sdk/testutils"]
